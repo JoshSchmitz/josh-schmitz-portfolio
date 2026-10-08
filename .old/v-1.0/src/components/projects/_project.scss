@@ -1,0 +1,18 @@
+.projects {
+    grid-area: project;
+}
+
+.project {
+    margin-top: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    &-date {
+        color: $text-light;
+        margin-top: 5px;
+    }
+
+    &-desc {
+        margin-top: 5px;
+    }
+}

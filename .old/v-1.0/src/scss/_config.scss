@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+$primary-color: #0f2462; // rgb(15, 36, 98);
+$secondary-color: #f4f4f4; // rgb(244,244,244);
+$tertiary-color: #debf10;
+$highlight-color: #dfdfdf;
+$text-dark: #2d2d2d;
+$text-light: #898989;
+$fontface: "PT Serif", Times, serif;
+
+// easeOut mixin
+@mixin easeOut {
+    transition: all 0.5s ease-out;
+}
+
+@mixin stickyFooter {
+    min-height: calc(100vh - 243px);
+}
+
+// Set Text Color
+@function set-text-color($color) {
+    @if (lightness($color) > 40) {
+        @return $text-dark;
+    }
+
+    @else {
+        @return $secondary-color;
+    }
+}
+
+.container {
+    max-width: 1760px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.page {
+    max-width: 1760px;
+    margin: 30px auto 30px auto;
+    padding: 0 30px;
+    @include stickyFooter;
+}
+
+.section {
+    margin-bottom: 30px;
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    hr {
+        color: $highlight-color;
+        border-color: $highlight-color;
+        border-style: solid;
+    }
+
+    p {
+        font-family: 'PT Sans', sans-serif;
+    }
+}
+
+/* Inserting a collapsed row between two flex items will make 
+ * the flex item that comes after it break to a new row */
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+/* Use a collapsed column to break to a new column */
+.break-column {
+    flex-basis: 100%;
+    width: 0;
+}

@@ -1,0 +1,23 @@
+.modal {
+    &-content {
+        position: absolute;
+        top: 375px;
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        background-color: $bg-light;
+        color: set-text-color($bg-light);
+        border: solid $highlight 1px;
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &-overlay {
+        position: fixed;
+        inset: 0px;
+        background-color: rgba(255, 255, 255, 0.75);
+        // background-color: rgba(0, 0, 0, 0.7);
+    }
+}

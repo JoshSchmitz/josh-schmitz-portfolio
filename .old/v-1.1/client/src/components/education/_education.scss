@@ -1,0 +1,89 @@
+// .section#educations .educations {
+//     .education {
+//         margin-top: 5px;
+//     }
+// }
+
+#homepage #details .educations {
+    grid-area: edu;
+}
+
+.education {
+    border-left: solid 4px $bg-light;
+    padding-left: 10px;
+    margin-top: 8px;
+
+    &>.headline {
+        &>.details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .gpa {
+                color: $text-medium;
+            }
+
+            .dates {
+                display: flex;
+                gap: 6px;
+                color: $text-medium;
+            }
+
+            .separator {
+                @include separator;
+                height: 5px;
+                width: 5px;
+            }
+        }
+    }
+
+    .specializations {
+        display: flex;
+        gap: 25px;
+
+        .majors,
+        .minors {
+            font-size: .93rem;
+            color: $text-medium;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .major,
+            .minor {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+
+                .separator {
+                    @include separator;
+                }
+            }
+        }
+    }
+
+    .institution {
+        font-size: .93rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .separator {
+            @include separator;
+            background-color: $text-dark;
+        }
+    }
+
+    &.highlighted {
+        border-left: solid 4px $bg-dark;
+    }
+}
+
+#education {
+    width: 600px;
+
+    &>.button {
+        width: fit-content;
+        align-self: flex-end;
+    }
+}

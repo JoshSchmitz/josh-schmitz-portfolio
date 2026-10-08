@@ -1,0 +1,95 @@
+.contact {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .portrait {
+            height: 180px;
+            width: 180px;
+
+            &.round {
+                border-radius: 100%;
+            }
+
+            &.bw {
+                filter: grayscale(100%) contrast(75%);
+            }
+        }
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-family: 'PT Sans', sans-serif;
+
+            .icon {
+                font-size: 1.6rem;
+            }
+        }
+    }
+
+    .social {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        a:link,
+        a:visited {
+            color: $text-dark;
+        }
+
+        a:hover,
+        a:active {
+            color: $text-medium;
+            @include ease-out;
+        }
+
+        .icon {
+            font-size: 2rem;
+        }
+    }
+
+    &.vertical {
+        flex-direction: column;
+        gap: 20px;
+
+        .contact-info {
+            align-items: center;
+            gap: 8px;
+
+            .info {
+                font-size: 1rem;
+
+                &.bio {
+                    font-size: .85rem;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                .icon {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        .social {
+            flex-direction: row;
+        }
+    }
+}

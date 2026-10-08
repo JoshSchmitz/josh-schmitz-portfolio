@@ -1,0 +1,84 @@
+#homepage #details .companies {
+    grid-area: exp;
+}
+
+.company {
+    margin-top: 10px;
+
+    &-dates {
+        color: $text-medium;
+        font-size: .93rem;
+    }
+
+    & .experiences {
+        border-left: solid 4px $highlight;
+        padding-left: 10px;
+
+        & .experience {
+            &>.headline {
+                &>.position {
+                    margin: -5px 0;
+
+                    &::before {
+                        content: "";
+                        display: inline-block;
+                        position: relative;
+                        bottom: 2px;
+                        width: 7px;
+                        height: 7px;
+                        margin-right: 9px;
+                        border-radius: 50%;
+                        background-color: #0f2462;
+                        vertical-align: middle;
+                    }
+                }
+            }
+
+            &>.content {
+                border-left: solid 2px $bg-light;
+                margin-left: 2.5px;
+                padding-left: 10px;
+                padding-bottom: 6px;
+                font-size: .93rem;
+
+                & .details {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    color: $text-medium;
+
+                    & .separator {
+                        background-color: $text-medium;
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                        vertical-align: middle;
+
+                    }
+                }
+            }
+        }
+
+        & .experience.sequential>.content {
+            border-left: solid 2px $bg-dark;
+        }
+    }
+}
+
+.headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+#experience {
+    max-width: 600px;
+
+    &>.button {
+        width: fit-content;
+        align-self: flex-end;
+    }
+}

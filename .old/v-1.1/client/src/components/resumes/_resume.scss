@@ -1,0 +1,72 @@
+.section#resumes {
+    .resumes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        .resume {
+            padding: 8px;
+            border: solid $highlight 2px;
+            border-radius: 12px;
+
+            &.main {
+                border: solid $bg-dark 2px;
+            }
+
+            &.add {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: dashed $highlight 3px;
+                gap: 8px;
+                color: $text-medium;
+                cursor: pointer;
+                height: 135px;
+
+                .icon {
+                    font-size: 1.25rem;
+                }
+
+                &:hover {
+                    box-shadow: none;
+                }
+            }
+
+            &:hover {
+                @include box-shadow;
+                @include ease-out;
+            }
+
+            .headline {
+                margin-bottom: 2px;
+
+                &>a {
+                    color: $text-dark;
+                    text-decoration: none;
+                }
+
+                .actions {
+                    font-size: 1rem;
+                }
+            }
+
+            .bio {
+                font-size: .85rem;
+                color: $text-medium;
+                height: 25px;
+                overflow: hidden;
+                margin-bottom: 6px;
+            }
+
+            .stats {
+                font-size: .7rem;
+                color: $text-medium;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 2px;
+            }
+        }
+
+
+    }
+}

@@ -1,0 +1,43 @@
+.section#projects .projects {
+    .project {
+        margin-top: 5px;
+    }
+}
+
+#homepage #details .projects {
+    grid-area: proj;
+}
+
+.projects {
+    .project {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        border-left: solid 4px $bg-light;
+        padding-left: 10px;
+        margin-bottom: 8px;
+
+        &>.details {
+            &>.headline {
+                justify-content: flex-start;
+
+                .dates {
+                    display: flex;
+                    gap: 6px;
+                    color: $text-medium;
+                }
+
+                .separator {
+                    @include separator;
+                    height: 5px;
+                    width: 5px;
+                }
+            }
+        }
+
+        &.highlighted {
+            border-left: solid 4px $bg-dark;
+        }
+    }
+}

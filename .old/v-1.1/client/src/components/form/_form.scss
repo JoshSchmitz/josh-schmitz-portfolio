@@ -1,0 +1,462 @@
+// form elements
+.button {
+    width: 100%;
+    background-color: $bg-dark;
+    color: set-text-color($bg-dark);
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    @include ease-out;
+
+    &:hover {
+        background-color: $text-dark;
+        color: set-text-color($text-dark);
+    }
+}
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 300px;
+    text-align: center;
+    padding: 20px;
+
+    &-content {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    &-section {
+        &.full {
+            flex-basis: 100%;
+        }
+
+        &.grow-1 {
+            flex-grow: 1;
+        }
+    }
+
+    label {
+        font-family: $formfontface;
+        color: $text-medium;
+        text-align: left;
+        font-size: .75rem;
+    }
+
+    .input,
+    .textarea,
+    .checkbox,
+    .selectbox {
+        position: relative;
+        margin-bottom: 10px;
+
+        .message {
+            background-color: $bg-light;
+            font-family: $formfontface;
+            position: absolute;
+            top: -8px;
+            left: 8px;
+            width: fit-content;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: end;
+            font-size: .7rem;
+            padding: 0 5px;
+            border-radius: 4px;
+
+            &.label {
+                top: 8px;
+                left: unset;
+                right: 8px;
+            }
+
+            &.error {
+                color: $error;
+                background-color: lighten($error, 35%);
+            }
+
+            &.warning {
+                color: $warning;
+                background-color: lighten($warning, 42%);
+            }
+        }
+    }
+
+    input,
+    textarea {
+        background: #fff;
+        border-radius: 8px;
+        border: 0;
+        outline: 0;
+        height: 40px;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+        font-size: .85rem;
+        padding: 8px 15px;
+        font-family: $formfontface;
+        letter-spacing: normal;
+        word-spacing: normal;
+
+        &.checkbox {
+            width: auto;
+            margin-left: 15px;
+            margin-bottom: 0;
+        }
+    }
+
+    textarea {
+        height: 150px;
+        resize: none;
+    }
+
+    .checkbox {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .range {
+        .form-group {
+            padding: 5px 15px;
+
+            input[type="range"] {
+                --c: #0f2462; // active color
+                --g: 6px; // the gap
+                --l: 6px; // line thickness
+                --s: 18px; // thumb size
+
+                // width: 400px;
+                height: var(--s);
+                /* needed for Firefox*/
+                --_c: color-mix(in srgb, var(--c), #000 var(--p, 0%));
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background: none;
+                cursor: pointer;
+                overflow: hidden;
+                padding: 0;
+                border-bottom: none;
+
+                &:focus-visible,
+                &:hover {
+                    --p: 25%;
+                }
+
+                &:active,
+                &:focus-visible {
+                    --_b: var(--s)
+                }
+
+                &::-moz-range-thumb {
+                    height: var(--s);
+                    width: var(--s);
+                    background: none;
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 var(--_b, var(--l)) inset var(--_c);
+                    border-image: linear-gradient(90deg, var(--_c) 50%, $highlight 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+                    -moz-appearance: none;
+                    appearance: none;
+                    transition: .3s;
+                }
+
+                &::-moz-range-track {
+                    border-radius: 18px;
+                }
+            }
+
+            /* chromium */
+            input[type="range" i] {
+                &::-webkit-slider-thumb {
+                    height: var(--s);
+                    aspect-ratio: 1;
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 var(--_b, var(--l)) inset var(--_c);
+                    border-image: linear-gradient(90deg, var(--_c) 50%, $highlight 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+                    -webkit-appearance: none;
+                    appearance: none;
+                    transition: .3s;
+                }
+
+                &::-webkit-slider-runnable-track {
+                    border-radius: 18px;
+                }
+            }
+        }
+
+    }
+
+    .select {
+        background: #fff;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        border-radius: 8px;
+        font-size: .85rem;
+        font-family: $formfontface;
+        letter-spacing: normal;
+        word-spacing: normal;
+        width: auto;
+        margin-bottom: 0;
+
+        &__control {
+            padding: 0 15px;
+        }
+
+        &__placeholder {
+            color: $text-medium;
+        }
+
+        &__indicator {
+            width: 18px;
+        }
+
+        &__menu {
+            background: #fff;
+            border: solid 1px $text-medium;
+            border-radius: 8px;
+            padding: 0 15px;
+            margin-top: 5px;
+
+            &-list {
+                padding: 5px;
+            }
+        }
+
+        &__option {
+            padding: 5px;
+        }
+
+        &__multi-value {
+            background-color: #eee;
+            margin-right: 6px;
+            // padding: 2px 5px 2px 7px;
+            border-radius: 5px;
+            gap: 4px;
+
+            &__label {
+                margin: 2px 2px 2px 7px;
+            }
+
+            &__remove {
+                border-bottom-right-radius: 5px;
+                border-top-right-radius: 5px;
+                padding: 0 2px;
+                @include ease-out;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: darken($highlight, 7%);
+                }
+            }
+        }
+
+        &-tile {
+            background: #fff;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            border-radius: 8px;
+            font-size: .85rem;
+            font-family: $formfontface;
+            letter-spacing: normal;
+            word-spacing: normal;
+            width: auto;
+            margin-bottom: 0;
+
+            &__control {
+                padding: 0 15px;
+            }
+
+            &__placeholder {
+                color: $text-medium;
+            }
+
+            &__indicator {
+                width: 18px;
+            }
+
+            &__menu {
+                background: #fff;
+                border: solid 1px $text-medium;
+                border-radius: 8px;
+                padding: 5px;
+                margin-top: 5px;
+                min-width: fit-content;
+
+                &-list {
+                    max-height: 200px;
+                    overflow-y: auto;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 5px;
+                }
+            }
+
+            &__option {
+                // width: 60px;
+                padding: 5px;
+                border-radius: 8px;
+                text-align: center;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $bg-light;
+                }
+
+                &>.option-content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    &>.icon {
+                        font-size: 40px;
+                        margin: 8px;
+                    }
+                }
+            }
+
+            &__single-value {
+                &>.option-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    &>.icon {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            &__multi-value {
+                background-color: #eee;
+                margin-right: 6px;
+                padding: 2px 5px 2px 7px;
+                border-radius: 5px;
+                gap: 4px;
+
+                &__remove:hover {
+                    background-color: $text-medium;
+                }
+            }
+        }
+    }
+
+    &-group {
+        border-radius: 8px;
+        background-color: #fff;
+        width: 100%;
+        margin-bottom: 5px;
+
+        &:hover {
+            & .input {
+                outline: none;
+            }
+
+            & .label {
+                color: set-text-color($bg-light);
+            }
+        }
+
+        &.inline {
+            display: flex;
+        }
+
+        &>.input,
+        &>.textarea,
+        &>.checkbox,
+        &>.selectbox {
+            border-radius: 0;
+            margin-bottom: 0;
+
+            &>input,
+            &>textarea,
+            &>.select,
+            &>.select-tile {
+                border-radius: 0;
+                margin-bottom: 0;
+            }
+
+            &:first-child {
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+
+                &>input,
+                &>textarea,
+                &>.select,
+                &>.select-tile {
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                }
+            }
+
+            &:last-child {
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+
+                &>input,
+                &>textarea,
+                &>.select,
+                &>.select-tile {
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+            }
+        }
+    }
+
+    &-header {
+        &>.title-bar {
+            display: grid;
+            grid-template-areas: "title title logout";
+            grid-template-columns: repeat(3, 1fr);
+
+            &>.title {
+                grid-area: title;
+                font-weight: bold;
+                font-size: 1.6rem;
+                text-align: left;
+            }
+        }
+
+        &>.subtitle {
+            font-size: 1rem;
+            color: $text-medium;
+        }
+    }
+
+    &>.link {
+        display: inline;
+        font-size: 1rem;
+        padding: 0;
+        color: set-text-color($bg-light);
+    }
+}
+
+.form-extra {
+    padding: 16px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-size: .85rem;
+    background-color: $highlight;
+    box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+
+    &>.link {
+        display: inline;
+        font-size: .85rem;
+        padding: 0;
+        color: set-link-color($highlight);
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

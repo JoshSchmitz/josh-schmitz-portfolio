@@ -1,0 +1,51 @@
+.experience {
+    margin-top: 20px;
+
+    h2 {
+        font-size: 1.45rem;
+    }
+
+    .headline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 1.8rem;
+
+            .action {
+                border-radius: 50%;
+                padding: 5px;
+
+                &:hover {
+                    background-color: #ececec;
+                    cursor: pointer;
+                    @include easeOut;
+                }
+            }
+        }
+    }
+
+    .details {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 3px;
+        margin-bottom: 10px;
+
+        .time {
+            color: $text-light;
+            font-weight: 600;
+        }
+    }
+}
+
+.highlighted {
+    border-left: 4px solid $primary-color;
+    padding-left: 15px;
+}

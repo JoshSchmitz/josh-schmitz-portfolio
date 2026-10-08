@@ -1,0 +1,36 @@
+@import 'config';
+@import '../components/pages/resume';
+@import '../components/header/header';
+@import '../components/footer/footer';
+@import '../components/nav/nav';
+@import '../components/experience/experience';
+@import '../components/education/education';
+@import '../components/skill/skill';
+@import '../components/leadership/leadership';
+@import '../components/accomplishment/accomplishment';
+@import '../components/awards/award';
+@import '../components/groups/group';
+@import '../components/projects/project';
+
+* {
+  display: block;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+head {
+  display: none;
+}
+
+body {
+  color: set-text-color($secondary-color);
+  background-color: $secondary-color;
+  height: 100%;
+  font-family: $fontface;
+  line-height: 1.5;
+}
+
+:-webkit-any(article, aside, nav, section) h1 {
+  font-size: 1.8rem;
+}

@@ -1,0 +1,28 @@
+.awards {
+    grid-area: award;
+}
+
+.award {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
+
+    &-date {
+        color: $text-light;
+
+        &::before {
+            display: inline-block;
+            position: relative;
+            content: ' ';
+            background-color: $text-light;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            margin-right: 5px;
+            bottom: 2.5px;
+        }
+    }
+}

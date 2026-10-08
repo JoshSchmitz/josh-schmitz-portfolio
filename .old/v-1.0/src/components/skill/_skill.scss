@@ -1,0 +1,78 @@
+.skills {
+    &>.title::first-letter {
+        text-transform: uppercase;
+    }
+
+    &-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+.skill {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: solid $highlight-color 2px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+
+    .icon {
+        font-size: 1.8rem;
+        font-weight: bolder;
+    }
+
+    .details {
+        // display: flex;
+        // flex-wrap: wrap;
+        // gap: 10px;
+        // row-gap: 0;
+
+        &-name {
+            display: flex;
+            gap: 10px;
+        }
+
+        &-years {
+            color: $text-light;
+
+            &::before {
+                display: inline-block;
+                position: relative;
+                content: ' ';
+                background-color: $text-light;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                width: 5px;
+                height: 5px;
+                margin-right: 5px;
+                bottom: 2.5px;
+            }
+        }
+
+        &-exp {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 3px;
+
+            .xp {
+                height: 5px;
+                width: 20px;
+                background-color: $highlight-color;
+                margin: 2px 0;
+            }
+
+            .filled {
+                background-color: $primary-color;
+            }
+        }
+    }
+}
+
+.highlighted-skill {
+    border: solid $primary-color 2px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,117 @@
+.section#skills {
+    .categories {
+        .category {
+            margin-top: 12px;
+
+            .skills {
+                padding: 10px 0;
+            }
+        }
+    }
+}
+
+#homepage #details #skill.categories {
+    grid-area: sk;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .skill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        border: solid $highlight 2px;
+        border-radius: 10px;
+        padding: 5px 12px;
+
+        &>.icon {
+            font-size: 1.8rem;
+            font-weight: bolder;
+        }
+
+        &>.details {
+            &>.info {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+
+                &>.years {
+                    font-size: .93rem;
+                    color: $text-medium;
+                }
+
+                &>.separator {
+                    background-color: $text-medium;
+                    border-radius: 50%;
+                    vertical-align: middle;
+                    height: 5px;
+                    width: 5px;
+                }
+            }
+
+            &>.exp {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 3px;
+                margin-top: 3px;
+
+                &>.xp {
+                    height: 5px;
+                    width: 20px;
+                    background-color: $highlight;
+                    margin: 2px 0;
+
+                    &.filled {
+                        background-color: $text-medium;
+                    }
+                }
+
+
+            }
+        }
+
+        &>.actions {
+            gap: 4px;
+            font-size: 1.1rem;
+        }
+
+
+        &.highlighted {
+            border: solid $bg-dark 2px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+            .details {
+                .xp {
+                    &.filled {
+                        background-color: $bg-dark;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.skillslist {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: $formfontface;
+    font-size: .7rem;
+
+    .skill {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: $text-medium;
+
+        .separator {
+            @include separator;
+            width: 2.5px;
+            height: 2.5px;
+        }
+    }
+}

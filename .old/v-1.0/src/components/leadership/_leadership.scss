@@ -1,0 +1,51 @@
+.leaderships {
+    &-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}
+
+.leadership {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+
+    .icon {
+        font-size: 2.6rem;
+        font-weight: bolder;
+        margin-top: 1px;
+    }
+
+    .details {
+        .headline {
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: $text-light;
+            margin-bottom: 5px;
+        }
+    }
+
+    &-highlighted {
+        border: solid $highlight-color 2px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 10px;
+
+        .icon {
+            color: $primary-color;
+
+            &>svg {
+                stroke: $tertiary-color;
+            }
+        }
+
+        .headline {
+            color: $primary-color;
+        }
+    }
+}

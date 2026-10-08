@@ -1,0 +1,18 @@
+#homepage {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    gap: 40px;
+    align-items: start;
+
+    #details {
+        margin: 12px 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas:
+            'exp exp exp exp exp exp'
+            'lead lead lead lead sk sk'
+            'edu edu edu edu sk sk'
+            'proj proj proj proj sk sk';
+        gap: 20px;
+    }
+}

@@ -1,0 +1,15 @@
+.confirm {
+    max-width: 350px;
+    padding: 20px;
+
+    &-message {
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    &-options {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+}

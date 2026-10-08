@@ -1,0 +1,63 @@
+.section#awards .awards {
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#homepage #details .awards {
+    grid-area: aw;
+}
+
+.awards {
+    display: flex;
+    gap: 10px;
+
+    .award {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        width: fit-content;
+        border: solid $highlight 2px;
+        border-radius: 10px;
+        padding: 5px 12px;
+
+        &>.icon {
+            font-size: 1.8rem;
+            font-weight: bolder;
+            margin-top: 5px;
+        }
+
+        &>.details {
+            &>.headline {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+
+                .date {
+                    display: flex;
+                    gap: 6px;
+                    color: $text-medium;
+                }
+
+                .separator {
+                    @include separator;
+                    height: 5px;
+                    width: 5px;
+                }
+            }
+        }
+
+        &>.actions {
+            gap: 4px;
+            font-size: 1.1rem;
+        }
+
+        &.highlighted {
+            border: solid $bg-dark 2px;
+            border-radius: 12px;
+            @include box-shadow;
+        }
+    }
+}
