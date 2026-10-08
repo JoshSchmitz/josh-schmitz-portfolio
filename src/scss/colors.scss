@@ -1,0 +1,30 @@
+/*
+    # Colors 
+    - version 1.0
+    - use in all stylesheets that reference the colors for this theme
+*/
+
+// background colors
+$bg-dark: #0F0265;
+$bg-dark-grey: #404141;
+$bg-medium: #E1E0E0;
+$bg-light: #F4F4F4;
+$bg-transparent-overlay: rgba(45, 45, 45, 0.2);
+
+// text colors
+$text-dark: #2D2D2D;
+$text-light: #F4F4F4;
+$text-medium: #898989;
+
+// control colors
+$control-transparent-light: rgba(244, 244, 244, 0.6);
+$control-transparent-dark: rgba(45, 45, 45, 0.7);
+
+// outline colors
+$outline-separator: rgba(137, 137, 137, 0.4);
+$outline-social-button: rgba(45, 45, 45, 0.7);
+$outline-social-button-click: rgba(45, 45, 45, 0.35);
+$outline-primary-button: rgba(0, 0, 0, 0.3);
+
+// miscelaneous
+$fade: linear-gradient(to top, rgba(244, 244, 244, 1), rgba(244, 244, 244, 0.13));

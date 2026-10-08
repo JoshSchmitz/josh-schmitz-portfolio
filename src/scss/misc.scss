@@ -1,0 +1,62 @@
+/*
+    # Miscellaneous 
+    - version 1.0
+    - use in all stylesheets that reference the config variables for this theme
+*/
+
+// main element shadows
+$header-drop-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+$footer-drop-shadow: drop-shadow(0px -4px 4px rgba(0, 0, 0, 0.25));
+$menu-box-shadow: 0px 0px 4px 2px rgba(30, 30, 30, 0.45);
+$portfolio-box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.28);
+$resume-section-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.17);
+$chip-drop-shadow: drop-shadow(0px 2px 1.5px rgba(0, 0, 0, 0.17));
+
+// button shadows
+$primary-button-drop-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+$primary-button-inner-shadow: inset 0px 5px 6px 0px rgba(255, 255, 255, 0.21);
+$primary-button-click-inner-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.25);
+$secondary-button-drop-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.17));
+$secondary-button-inner-shadow: inset 0px 5px 7px 0px rgba(0, 0, 0, 0.25);
+$social-button-drop-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.15);
+$social-button-inner-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.18);
+
+// layout mixins
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-center-spacebetween {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-center-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-spacebetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin portrait-small {
+    width: 256px;
+    height: auto;
+    border-radius: 27.31px;
+}

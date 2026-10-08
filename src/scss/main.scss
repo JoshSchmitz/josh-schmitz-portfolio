@@ -1,0 +1,1461 @@
+@use 'colors';
+@use 'fonts';
+@use 'misc';
+@use 'media';
+
+* {
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+head {
+    display: none;
+}
+
+/* Space on top of subsequent paragraphs */
+p+p {
+    margin-top: 12px;
+}
+
+.app {
+    /* app fills viewport */
+    @include misc.flex-column;
+    min-height: 100vh;
+    background-color: colors.$bg-light;
+}
+
+.menu-bar {
+    @include misc.flex-center;
+
+    &-header {
+        @extend .menu-bar;
+        padding: 2px 2px;
+        border-radius: 8px;
+        background-color: colors.$bg-dark;
+        box-shadow: misc.$menu-box-shadow;
+
+        .menu-item {
+            @include fonts.menu-text;
+            cursor: pointer;
+            padding: 8px 16px;
+            box-sizing: border-box;
+
+            &-active {
+                @extend .menu-item;
+                border: solid 1px colors.$bg-light;
+                border-radius: 7px;
+                box-shadow: inset 0 0 4px 1px rgba(255, 255, 255, 1);
+                cursor: default;
+            }
+        }
+    }
+
+    &-footer {
+        @extend .menu-bar;
+        padding: 1px;
+
+        .menu-item {
+            @include fonts.body-1;
+            padding: 8px 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+            &-active {
+                @extend .menu-item;
+                border-bottom: solid 1.5px colors.$bg-light;
+                cursor: default;
+            }
+        }
+    }
+}
+
+.button {
+    @include fonts.button-text;
+    @include misc.flex-center-center;
+    gap: 12px;
+    width: fit-content;
+    padding: 8px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &-primary {
+        @extend .button;
+        background-color: colors.$bg-dark;
+        color: colors.$text-light;
+        border: solid 1px colors.$outline-primary-button;
+        filter: misc.$primary-button-drop-shadow;
+        box-shadow: misc.$primary-button-inner-shadow;
+
+        &:active {
+            filter: none;
+            box-shadow: misc.$primary-button-click-inner-shadow;
+        }
+    }
+
+    &-secondary {
+        @extend .button;
+        background-color: colors.$bg-light;
+        color: colors.$bg-dark;
+        border: solid 2px colors.$bg-dark;
+        filter: misc.$secondary-button-drop-shadow;
+
+        &:active {
+            filter: none;
+            box-shadow: misc.$secondary-button-inner-shadow;
+        }
+    }
+
+    &-back {
+        @extend .button-secondary;
+        gap: 8px;
+        padding: 10px 24px 10px 8px;
+
+        .icon>svg>path {
+            stroke-width: 80;
+        }
+    }
+
+    &-social {
+        @extend .button;
+        padding: 6px;
+        border: solid 1px colors.$outline-social-button;
+        border-radius: 32px;
+        box-shadow: misc.$social-button-drop-shadow;
+
+        &:active {
+            border: solid 1px colors.$outline-social-button-click;
+            box-shadow: misc.$social-button-inner-shadow;
+        }
+
+        .icon {
+            font-size: 32px;
+        }
+    }
+}
+
+.chip {
+    @include fonts.body-2-bold;
+    padding: 4px 12px;
+    background-color: colors.$bg-medium;
+    border-radius: 10px;
+    filter: misc.$chip-drop-shadow;
+}
+
+.gallery {
+    // remove if needed, this is included in the portfolio item headline styles
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        @include misc.flex-center-spacebetween;
+        z-index: 100;
+
+        .navigation {
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 24px;
+            background-color: colors.$bg-transparent-overlay;
+            align-self: flex-end;
+            margin-bottom: 8px;
+
+            .dot {
+                height: 8px;
+                width: 8px;
+                background-color: colors.$control-transparent-light;
+                border-radius: 1000px;
+                cursor: pointer;
+
+                &.active {
+                    background-color: colors.$control-transparent-dark;
+                    cursor: default;
+                }
+            }
+        }
+
+        .arrow {
+            padding: 8px;
+            background-color: colors.$bg-transparent-overlay;
+            border-radius: 48px;
+            height: fit-content;
+            cursor: pointer;
+
+            &.right {
+                margin-right: 16px;
+            }
+
+            &.left {
+                margin-left: 16px;
+            }
+
+            .icon {
+                font-size: 20px;
+                color: colors.$control-transparent-light;
+            }
+        }
+    }
+
+    .image-container {
+        display: flex;
+        transition: transform 0.5s ease;
+
+        .image {
+            flex: 0 0 100%;
+            min-width: 0;
+            transition: 'transform 0.3s ease',
+        }
+    }
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-small {
+        @extend .skills;
+        gap: 4px;
+        @include fonts.tagline;
+
+        .skill {
+            @include misc.flex-center;
+            gap: 4px;
+
+            .separator {
+                height: 3px;
+                width: 3px;
+                border-radius: 2.5px;
+                background-color: colors.$text-dark;
+            }
+        }
+    }
+
+    &-chip {
+        @extend .skills;
+        gap: 6px;
+
+        .skill {
+            @extend .chip;
+            cursor: pointer;
+        }
+    }
+
+    &-full {
+        @include misc.flex-column;
+        gap: 4px;
+
+        @include media.tablet-up {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px 58px;
+        }
+
+        .skill {
+            @include misc.flex-center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-bottom: solid 1px colors.$outline-separator;
+
+            @include media.tablet-up {
+                width: calc(33.33% - 38.66px);
+            }
+
+            .icon {
+                font-size: 28px;
+            }
+
+            .details {
+                @include misc.flex-column;
+                gap: 2px;
+
+                .text {
+                    @include fonts.h4;
+                }
+
+                .experience {
+                    @include fonts.tagline-bold;
+                    @include misc.flex-center;
+                    gap: 6px;
+
+                    .level-scale {
+                        width: 206px;
+                        @include misc.flex-spacebetween;
+                        gap: 5px;
+
+                        .marker {
+                            height: 4px;
+                            width: 100%;
+                            background-color: colors.$bg-medium;
+
+                            &-filled {
+                                @extend .marker;
+                                background-color: colors.$bg-dark;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header-wrapper {
+    filter: misc.$header-drop-shadow;
+    position: sticky;
+    z-index: +1;
+    top: 0;
+
+    .header {
+        // Defines a trapezium: top-left, top-right, bottom-right, bottom-left
+        clip-path: polygon(0 0,
+                100% 0,
+                100% calc(100% - 1.5vw),
+                0 100%);
+        background-color: colors.$bg-dark;
+        color: colors.$text-light;
+
+        &-content {
+            @include misc.flex-column-center;
+            gap: 16px;
+            padding: 16px 16px 24px 16px;
+
+            @include media.mobile-up {
+                @include misc.flex-center-spacebetween;
+                flex-direction: row;
+            }
+
+            @include media.tablet-up {
+                padding: 24px 80px;
+            }
+
+            @include media.desktop-up {
+                width: 1120px;
+                padding: 24px 0px;
+                margin: auto;
+            }
+
+            @include media.lg-desktop-up {
+                width: 1728px;
+                padding: 24px 80px;
+            }
+
+            .logo {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.body {
+    flex: 1;
+    @include misc.flex-column;
+    background-color: colors.$bg-light;
+
+    .content {
+        @include misc.flex-column;
+        flex: 1;
+        color: colors.$text-dark;
+        width: 100%;
+        gap: 24px;
+        padding: 32px 16px;
+
+        @include media.tablet-up {
+            padding: 32px 80px;
+        }
+
+        @include media.desktop-up {
+            width: 1120px;
+            padding: 32px 0px;
+            margin: auto;
+        }
+
+        @include media.lg-desktop-up {
+            width: 1728px;
+            padding: 24px 80px;
+        }
+
+        &-home {
+            @extend .content;
+            align-items: center;
+
+            @include media.desktop-up {
+                flex-direction: row;
+            }
+
+            @include media.lg-desktop-up {
+                @include media.layout-small-desktop;
+            }
+
+            .portrait {
+                @include misc.portrait-small;
+
+                @include media.tablet-up {
+                    width: 432px;
+                }
+            }
+
+            .details {
+                @include misc.flex-column-center;
+                flex: 1;
+                gap: 24px;
+                width: 100%;
+
+                .headline {
+                    @include misc.flex-column-center;
+                    gap: 8px;
+                    text-align: center;
+                    padding: 0 16px;
+
+                    .name {
+                        @include fonts.h2;
+                    }
+
+                    .education {
+                        @include fonts.h5;
+                        color: colors.$text-medium;
+                    }
+
+                    .title {
+                        @include fonts.h5;
+                    }
+                }
+
+                .contact-buttons {
+                    @include misc.flex-column-center;
+                    gap: 16px;
+                    padding: 0 16px;
+                    width: 100%;
+
+                    @include media.mobile-up {
+                        flex-direction: row;
+                    }
+
+                    .button {
+                        text-transform: capitalize;
+                        flex: 1;
+                        width: 100%;
+                    }
+                }
+
+                .bio {
+                    @include misc.flex-column-center;
+                    gap: 4px;
+                    padding: 0 16px;
+
+                    &>.title {
+                        @include fonts.h5-caps;
+                    }
+
+                    &-text {
+                        @include fonts.body-1;
+                    }
+                }
+
+                .social {
+                    display: flex;
+                    gap: 16px;
+                    padding: 0 16px;
+                }
+            }
+        }
+
+        &-contact {
+            @extend .content;
+            align-items: center;
+
+            @include media.tablet-up {
+                justify-content: center;
+            }
+
+            @include media.desktop-up {
+                flex-direction: row;
+            }
+
+            @include media.lg-desktop-up {
+                @include media.layout-small-desktop;
+            }
+
+            .portrait {
+                @include misc.portrait-small;
+
+                @include media.mobile-up {
+                    display: none;
+                }
+
+                @include media.tablet-up {
+                    display: block;
+                    width: 432px;
+                }
+            }
+
+            .details {
+                @include misc.flex-column-center;
+                flex: 1;
+                gap: 24px;
+                width: 100%;
+
+                .headline {
+                    @include misc.flex-column-center;
+                    gap: 8px;
+
+                    .name {
+                        @include fonts.h2;
+                    }
+
+                    .title {
+                        @include fonts.h5;
+                        color: colors.$text-medium;
+                    }
+                }
+
+                .contact {
+                    @include fonts.h5-caps;
+                    @include misc.flex-column-center;
+                    gap: 8px;
+                    width: 100%;
+
+                    &-buttons {
+                        @include misc.flex-column-center;
+                        gap: 16px;
+                        padding: 0 16px;
+                        width: 100%;
+
+                        @include media.mobile-up {
+                            flex-direction: row;
+                        }
+
+                        @include media.tablet-up {
+                            padding: 0;
+                            width: 60%;
+                            margin: auto;
+                        }
+
+                        .button {
+                            flex: 1;
+                            text-transform: capitalize;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .social {
+                    @include fonts.h5-caps;
+                    @include misc.flex-column-center;
+                    gap: 8px;
+                    width: 100%;
+
+                    &-buttons {
+                        display: flex;
+                        gap: 16px;
+                        padding: 0 16px;
+                    }
+                }
+            }
+        }
+
+        &-portfolio {
+            @extend .content;
+
+            .portfolio-list {
+                @include misc.flex-column;
+                gap: 8px;
+                width: 100%;
+
+                @include media.desktop-up {
+                    flex-direction: row;
+                }
+
+                .headline {
+                    @include media.desktop-up {
+                        width: 65%;
+                    }
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    margin: 0 16px;
+                    padding: 8px 0;
+                    border-bottom: solid 1px colors.$outline-separator;
+                    cursor: pointer;
+
+                    .icon {
+                        font-size: 36px;
+                    }
+
+                    .details {
+                        @include misc.flex-column;
+                        gap: 8px;
+
+                        .title {
+                            @include fonts.h3
+                        }
+
+                        .description {
+                            @include fonts.body-1;
+                            color: colors.$text-medium;
+                            display: -webkit-box;
+                            line-clamp: 2;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+
+                    &-headline {
+                        @include misc.flex-column;
+                        background-color: colors.$bg-dark;
+                        padding: 16px;
+                        border-radius: 16px;
+                        box-shadow: misc.$portfolio-box-shadow;
+                        gap: 16px;
+
+                        .gallery {
+                            border-radius: 12px;
+                        }
+
+                        .icon>svg>path {
+                            stroke-width: 80;
+                        }
+
+                        .details {
+                            @include misc.flex-column-center;
+                            padding: 0 8px;
+                            gap: 12px;
+
+                            .title {
+                                @include fonts.h2;
+                                color: colors.$text-light;
+                                text-align: center;
+                            }
+
+                            .description {
+                                @include fonts.body-1;
+                                color: colors.$text-medium;
+                                display: -webkit-box;
+                                line-clamp: 2;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &-resume {
+            @extend .content;
+
+            @include media.desktop-up {
+                flex-direction: row;
+                gap: 40px;
+            }
+
+            .profile {
+                @include misc.flex-column-center;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 150px;
+                height: fit-content;
+                display: none;
+                gap: 8px;
+
+                @include media.desktop-up {
+                    display: flex;
+                }
+
+                .portrait {
+                    width: 212px;
+                    height: auto;
+                    border-radius: 27.31px;
+                }
+
+                .details {
+                    @include misc.flex-column-center;
+                    flex: 1;
+                    gap: 24px;
+                    width: 100%;
+
+                    .headline {
+                        @include misc.flex-column-center;
+                        gap: 8px;
+                        text-align: center;
+
+                        .name {
+                            @include fonts.h2;
+                        }
+
+                        .education {
+                            @include fonts.h5;
+                            color: colors.$text-medium;
+                        }
+
+                        .title {
+                            @include fonts.h5;
+                        }
+                    }
+
+                    .bio {
+                        @include misc.flex-column-center;
+                        width: 244px;
+                        gap: 4px;
+
+                        &>.title {
+                            @include fonts.h5-caps;
+                        }
+
+                        &-text {
+                            @include fonts.body-1;
+                        }
+                    }
+
+                    .social {
+                        display: flex;
+                        gap: 16px;
+                    }
+                }
+            }
+
+            .resume {
+                @include misc.flex-column;
+                gap: 24px;
+
+                &>.column {
+                    @include misc.flex-column;
+                    gap: 24px;
+                }
+
+                @include media.lg-desktop-up {
+                    flex-direction: row;
+                    gap: 40px;
+                }
+
+                .date {
+                    display: flex;
+                    align-items: center;
+                    justify-content: end;
+                    gap: 4px;
+                    color: colors.$text-medium;
+                    @include fonts.date-small;
+
+                    &>.separator {
+                        height: 3px;
+                        width: 3px;
+                        border-radius: 2.5px;
+                        background-color: colors.$text-medium;
+                    }
+                }
+
+                .education-section {
+                    .title {
+                        @include fonts.h2;
+                        padding: 0 16px 10px 16px;
+                    }
+
+                    .educations {
+                        padding: 10px 16px;
+
+                        .education {
+                            @include misc.flex-column;
+                            gap: 8px;
+
+                            .headline {
+                                @include misc.flex-column;
+                                gap: 8px;
+
+                                @include media.tablet-up {
+                                    flex-direction: row;
+                                    align-items: baseline;
+                                    gap: 16px;
+                                }
+
+                                .degree {
+                                    @include fonts.h3;
+                                }
+
+                                .institution {
+                                    @include fonts.h5-caps;
+                                    color: colors.$text-medium;
+                                }
+                            }
+
+                            .details {
+                                @include misc.flex-column;
+                                gap: 4px;
+
+                                @include media.tablet-up {
+                                    flex-direction: row;
+                                    align-items: baseline;
+                                    gap: 16px;
+                                }
+
+                                .majors,
+                                .minors {
+                                    @include fonts.body-1-bold;
+                                    display: flex;
+                                    gap: 4px;
+
+                                    &>.title {
+                                        @include fonts.body-1-bold;
+                                        padding: 0;
+                                    }
+
+                                    .major,
+                                    .minor {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 4px;
+
+                                        &>.separator {
+                                            height: 4px;
+                                            width: 4px;
+                                            border-radius: 2.5px;
+                                            background-color: colors.$text-dark;
+                                        }
+                                    }
+                                }
+
+                                .focuses {
+                                    @include fonts.tagline-bold;
+                                    display: flex;
+                                    gap: 4px;
+
+                                    @include media.tablet-up {
+                                        flex: 1;
+                                    }
+
+                                    .focus {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 4px;
+
+                                        &>.separator {
+                                            height: 3px;
+                                            width: 3px;
+                                            border-radius: 2.5px;
+                                            background-color: colors.$text-medium;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .experiences-section {
+                    border: solid 1px colors.$text-medium;
+                    border-radius: 16px;
+                    box-shadow: misc.$resume-section-box-shadow;
+                    overflow: hidden;
+
+                    .title {
+                        @include misc.flex-spacebetween;
+                        @include fonts.h2;
+                        padding: 10px 16px;
+                        align-items: center;
+                        border-bottom: solid 1px colors.$outline-separator;
+                        cursor: pointer;
+                    }
+
+                    .experiences {
+                        padding: 10px 16px;
+
+                        .experience {
+                            display: flex;
+                            gap: 16px;
+                            opacity: 1;
+                            transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
+
+                            &>.sidebar {
+                                @include misc.flex-column;
+                                background-color: colors.$bg-light;
+                                width: 3px;
+                                overflow: visible;
+
+                                &>.before {
+                                    height: 10px;
+                                }
+
+                                &>.after {
+                                    height: 100%;
+                                }
+
+                                &>.dot-bg {
+                                    @include misc.flex-center-center;
+                                    position: relative;
+                                    right: 5.5px;
+                                    width: 14px;
+                                    height: 14px;
+                                    border-radius: 12px;
+                                    background-color: colors.$bg-light;
+
+                                    &>.dot-stroke {
+                                        @include misc.flex-center-center;
+                                        width: 10px;
+                                        height: 10px;
+                                        border-radius: 8px;
+                                        background-color: colors.$bg-light;
+
+                                        &>.dot-center {
+                                            width: 4px;
+                                            height: 4px;
+                                            border-radius: 5px;
+                                            background-color: colors.$bg-light;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.sequence,
+                            &.sequence-start,
+                            &.sequence-end {
+                                &>.sidebar {
+                                    @include misc.flex-column;
+                                    background-color: colors.$bg-dark;
+                                    width: 3px;
+                                    overflow: visible;
+
+                                    &>.before {
+                                        height: 10px;
+                                    }
+
+                                    &>.after {
+                                        height: 100%;
+                                    }
+
+                                    &>.dot-bg {
+                                        @include misc.flex-center-center;
+                                        position: relative;
+                                        right: 5.5px;
+                                        width: 14px;
+                                        height: 14px;
+                                        border-radius: 12px;
+                                        background-color: colors.$bg-light;
+
+                                        &>.dot-stroke {
+                                            @include misc.flex-center-center;
+                                            width: 10px;
+                                            height: 10px;
+                                            border-radius: 8px;
+                                            background-color: colors.$bg-dark;
+
+                                            &>.dot-center {
+                                                width: 4px;
+                                                height: 4px;
+                                                border-radius: 5px;
+                                                background-color: colors.$bg-light;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                &-start>.sidebar>.before {
+                                    background-color: colors.$bg-light;
+                                }
+
+                                &-end>.sidebar>.after {
+                                    background-color: colors.$bg-light;
+                                }
+                            }
+                        }
+
+                        .info {
+                            @include misc.flex-column;
+                            gap: 8px;
+
+                            .position {
+                                @include fonts.h3;
+                            }
+
+                            .details {
+                                @include misc.flex-column;
+                                padding-bottom: 16px;
+                                gap: 4px;
+
+                                .company {
+                                    @include fonts.h5-caps;
+                                }
+
+                                .description {
+                                    @include fonts.body-1;
+                                }
+                            }
+                        }
+                    }
+
+                    &-open {
+                        @extend .experiences-section;
+                        position: relative;
+
+                        .title>.icon {
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .fade {
+                            display: none;
+                        }
+                    }
+
+                    &-closed {
+                        @extend .experiences-section;
+                        position: relative;
+
+                        .title>.icon {
+                            transform: rotate(180deg);
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .experiences>*:not(:first-child) {
+                            display: none;
+                            opacity: 0;
+                            /* Allow discrete transition for display */
+                            transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
+                        }
+
+                        .fade {
+                            position: absolute;
+                            bottom: 0;
+                            height: 40%;
+                            width: 100%;
+                            background-image: colors.$fade;
+                        }
+                    }
+                }
+
+                .skills-section {
+                    @include misc.flex-column;
+                    gap: 10px;
+                    padding: 0 16px;
+
+                    .title {
+                        @include fonts.h2;
+                    }
+
+                    .skills {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 6px;
+
+                        .skill {
+                            @extend .chip;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .leadership-section {
+                    @include misc.flex-column;
+                    gap: 10px;
+                    padding: 0 16px;
+
+                    &>.title {
+                        @include fonts.h2;
+                    }
+
+                    .leaderships {
+                        @include misc.flex-column;
+                        gap: 16px;
+
+                        .leadership {
+                            @include misc.flex-column;
+                            gap: 6px;
+
+                            &:nth-child(2n+1) {
+                                text-align: right;
+                            }
+
+                            .title {
+                                @include fonts.h4;
+                            }
+
+                            .description {
+                                @include fonts.body-1;
+                            }
+                        }
+                    }
+                }
+
+                .project-section {
+                    @include misc.flex-column;
+                    gap: 10px;
+                    padding: 0 16px;
+
+                    &>.title {
+                        @include fonts.h2;
+                    }
+
+                    .projects {
+                        @include misc.flex-column;
+                        gap: 16px;
+
+                        .project {
+                            @include misc.flex-column;
+                            gap: 6px;
+
+                            &:nth-child(2n) {
+                                text-align: right;
+
+                                .title {
+                                    flex-direction: row-reverse;
+                                }
+                            }
+
+                            .title {
+                                display: flex;
+                                align-items: start;
+                                gap: 6px;
+
+                                .date {
+                                    @include fonts.date-large;
+                                }
+
+                                .name {
+                                    @include fonts.h4;
+                                }
+                            }
+
+                            .description {
+                                @include fonts.body-1;
+                            }
+                        }
+                    }
+                }
+
+                .accomplishment-section {
+                    border: solid 1px colors.$text-medium;
+                    border-radius: 16px;
+                    box-shadow: misc.$resume-section-box-shadow;
+                    overflow: hidden;
+
+                    &>.title {
+                        @include misc.flex-center-spacebetween;
+                        @include fonts.h2;
+                        padding: 10px 16px;
+                        border-bottom: solid 1px colors.$outline-separator;
+                        cursor: pointer;
+
+                        &>p {
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+
+                    .accomplishments {
+                        @include misc.flex-column;
+                        gap: 16px;
+                        padding: 10px 16px;
+
+                        .accomplishment {
+                            @include misc.flex-column;
+                            gap: 6px;
+
+                            &:nth-child(2n) {
+                                text-align: right;
+
+                                .title {
+                                    flex-direction: row-reverse;
+                                }
+                            }
+
+                            .title {
+                                display: flex;
+                                align-items: start;
+                                gap: 6px;
+
+                                .date {
+                                    @include fonts.date-large;
+                                }
+
+                                .name {
+                                    @include fonts.h4;
+                                }
+                            }
+
+                            .description {
+                                @include fonts.body-1;
+                            }
+                        }
+                    }
+
+                    &-open {
+                        @extend .accomplishment-section;
+                        position: relative;
+
+                        .title>.icon {
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .accomplishments {
+                            display: flex;
+                            opacity: 1;
+                            /* Allow discrete transition for display */
+                            transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
+                        }
+                    }
+
+                    &-closed {
+                        @extend .accomplishment-section;
+                        position: relative;
+
+                        .title>.icon {
+                            transform: rotate(180deg);
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .accomplishments {
+                            display: none;
+                            opacity: 0;
+                            /* Allow discrete transition for display */
+                            transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
+                        }
+                    }
+                }
+
+                .group-section {
+                    border: solid 1px colors.$text-medium;
+                    border-radius: 16px;
+                    box-shadow: misc.$resume-section-box-shadow;
+                    overflow: hidden;
+
+                    &>.title {
+                        @include misc.flex-center-spacebetween;
+                        @include fonts.h2;
+                        padding: 10px 16px;
+                        border-bottom: solid 1px colors.$outline-separator;
+                        cursor: pointer;
+                    }
+
+                    .groups {
+                        @include misc.flex-column;
+                        gap: 10px;
+                        padding: 10px 16px;
+
+                        @include media.tablet-up {
+                            flex-direction: row;
+                            flex-wrap: wrap;
+                        }
+
+                        .group {
+                            @include misc.flex-column-center;
+                            gap: 4px;
+
+                            @include media.tablet-up {
+                                width: calc(50% - 5px);
+                            }
+
+                            .position {
+                                @include fonts.h4;
+                            }
+
+                            .name {
+                                @include fonts.body-1;
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    &-open {
+                        @extend .group-section;
+                        position: relative;
+
+                        .title>.icon {
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .groups {
+                            display: flex;
+                            opacity: 1;
+                            /* Allow discrete transition for display */
+                            transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
+                        }
+                    }
+
+                    &-closed {
+                        @extend .group-section;
+                        position: relative;
+
+                        .title>.icon {
+                            transform: rotate(180deg);
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .groups {
+                            display: none;
+                            opacity: 0;
+                            /* Allow discrete transition for display */
+                            transition: opacity 0.3s ease-in-out, display 0.3s ease-in-out allow-discrete;
+                        }
+                    }
+                }
+
+                .award-section {
+                    @include misc.flex-column;
+                    gap: 10px;
+                    padding: 0 16px;
+
+                    &>.title {
+                        @include fonts.h2;
+                    }
+
+                    .awards {
+                        display: flex;
+                        justify-content: center;
+                        gap: 16px;
+                        flex-wrap: wrap;
+
+                        .award {
+                            @include misc.flex-column-center;
+                            gap: 4px;
+                            width: fit-content;
+
+                            .icon {
+                                font-size: 44px;
+                            }
+
+                            .title {
+                                @include fonts.h3;
+                            }
+
+                            .issuing-body {
+                                @include fonts.h5-caps;
+                                color: colors.$text-medium;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &-skills {
+            @extend .content;
+
+            @include media.lg-desktop-up {
+                @include media.layout-small-desktop;
+            }
+
+            .skill-section {
+                padding: 0 16px;
+
+                .title {
+                    @include fonts.h2;
+                }
+            }
+        }
+
+        &-portfolio-item {
+            @extend .content;
+
+            .portfolio-item {
+                @include misc.flex-column;
+                gap: 16px;
+
+                @include media.desktop-up {
+                    flex-direction: row-reverse;
+                }
+
+                .details {
+                    @include misc.flex-column;
+                    gap: 16px;
+                    padding: 0 16px;
+
+                    @include media.desktop-up {
+                        padding: 0;
+                        min-width: 22%;
+                    }
+
+                    @include media.lg-desktop-up {
+                        min-width: 24%;
+                    }
+
+                    .title {
+                        @include fonts.h2;
+                        text-align: center;
+                    }
+
+                    .description {
+                        @include fonts.body-1;
+                    }
+
+                    .meta {
+                        @include misc.flex-center-spacebetween;
+                        gap: 16px;
+
+                        .date {
+                            @include fonts.body-1-bold;
+                        }
+
+                        .tags {
+                            display: flex;
+                            gap: 8px;
+                        }
+                    }
+
+                    .skills-small {
+                        justify-content: center;
+                        color: colors.$text-medium;
+                        padding: 0 16px;
+
+                        .skill>.separator {
+                            background-color: colors.$text-medium;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-wrapper {
+        filter: misc.$footer-drop-shadow;
+
+        .footer {
+            // Defines a trapezium: top-left, top-right, bottom-right, bottom-left
+            clip-path: polygon(0 calc(0% + 1.5vw),
+                    100% 0,
+                    100% 100%,
+                    0 100%);
+            background-color: colors.$bg-dark;
+            color: colors.$text-light;
+
+            &-content {
+                @include misc.flex-column-center;
+                gap: 4px;
+                justify-content: end;
+                background-color: colors.$bg-dark;
+                color: colors.$text-light;
+                padding: 24px 16px 8px 16px;
+                position: relative;
+                z-index: +1;
+
+                @include media.tablet-up {
+                    padding: 24px 80px 8px 80px;
+                }
+
+                @include media.desktop-up {
+                    width: 1120px;
+                    padding: 24px 0px 8px 0px;
+                    margin: auto;
+                }
+
+                @include media.lg-desktop-up {
+                    width: 1728px;
+                    padding: 24px 80px 8px 80px;
+                }
+
+                .copyright {
+                    text-align: center;
+                    @include fonts.tagline;
+                }
+            }
+        }
+    }
+}
