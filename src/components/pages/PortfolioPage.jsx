@@ -10,7 +10,7 @@ import IntroductionSlide from '../../assets/images/portfolio-joshschmitz/introdu
 import MobileFirstDesignSlide from '../../assets/images/portfolio-joshschmitz/mobile-first-design-slide.png';
 import TechnologyStackSlide from '../../assets/images/portfolio-joshschmitz/technology-stack-slide.png';
 import ImageSliderSlide from '../../assets/images/portfolio-joshschmitz/image-slider-slide.png';
-import ResumeSlide from '../../assets/images/portfolio-joshschmitz/resume-slide.png';
+import ResumeSlide from '../../assets/images/portfolio-joshschmitz/resume-slide.gif';
 import SkillsSlide from '../../assets/images/portfolio-joshschmitz/skills-slide.png';
 
 const PortfolioPage = () => {
