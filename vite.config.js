@@ -9,6 +9,6 @@ export default defineConfig({
   },
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   build: {
-    assetsInlineLimit: 2048, // never inline any asset — emit all as separate files
+    assetsInlineLimit: 0, // never inline any asset — emit all as separate files
   },
 });
