@@ -1357,7 +1357,7 @@ p+p {
 
             .portfolio-item {
                 @include misc.flex-column;
-                gap: 16px;
+                gap: 32px;
 
                 @include media.desktop-up {
                     flex-direction: row-reverse;
