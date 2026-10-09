@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/Footer';
 import Button from '../button/Button';
@@ -6,73 +6,77 @@ import Chip from '../chip/Chip';
 import SkillsList from '../skills/SkillsList';
 import Gallery from '../gallery/Gallery';
 
+// import slider images
+import IntroductionSlide from '../../assets/images/portfolio-joshschmitz/introduction-slide.png';
+import MobileFirstDesignSlide from '../../assets/images/portfolio-joshschmitz/mobile-first-design-slide.png';
+import TechnologyStackSlide from '../../assets/images/portfolio-joshschmitz/technology-stack-slide.png';
+import ImageSliderSlide from '../../assets/images/portfolio-joshschmitz/image-slider-slide.png';
+import ResumeSlide from '../../assets/images/portfolio-joshschmitz/resume-slide.png';
+import SkillsSlide from '../../assets/images/portfolio-joshschmitz/skills-slide.png';
+
 const PortfolioItemJoshSchmitz = () => {
-  const navigate = useNavigate();
-  const [portfolioItem, setPortfolioItem] = useState([]);
-
-  useEffect(() => {
-    const portfolioData = [
-      {
-        id: '00001',
-        title: 'Josh Schmitz Website',
-        description:
-          '<p>Figma design for Josh Schmitz portfolio and resume website. The purpose of this website is to serve as my professional online presence showcasing my resume, projects, and portfolio of work.</p><p>Using free Figma features and components, I designed this website to deliver a natural user interface to showcase my resume and portfolio and create an elegant user experience. This design incorporates modern, mobile-first web design principles and component based development structures to streamline transition from design to final product.</p>',
-        images: [
-          '/src/assets/images/portfolio-joshschmitz/introduction-slide.png',
-          '/src/assets/images/portfolio-joshschmitz/mobile-first-design-slide.png',
-          '/src/assets/images/portfolio-joshschmitz/technology-stack-slide.png',
-          '/src/assets/images/portfolio-joshschmitz/image-slider-slide.png',
-          '/src/assets/images/portfolio-joshschmitz/resume-slide.gif',
-          '/src/assets/images/portfolio-joshschmitz/skills-slide.png',
+  const portfolioData = [
+    {
+      id: '00001',
+      title: 'Josh Schmitz Website',
+      description:
+        '<p>Figma design for Josh Schmitz portfolio and resume website. The purpose of this website is to serve as my professional online presence showcasing my resume, projects, and portfolio of work.</p><p>Using free Figma features and components, I designed this website to deliver a natural user interface to showcase my resume and portfolio and create an elegant user experience. This design incorporates modern, mobile-first web design principles and component based development structures to streamline transition from design to final product.</p>',
+      images: [
+        IntroductionSlide,
+        MobileFirstDesignSlide,
+        TechnologyStackSlide,
+        ImageSliderSlide,
+        ResumeSlide,
+        SkillsSlide,
+      ],
+      meta: {
+        headline: true,
+        date: '3/1/2026',
+        tags: ['Design', 'Website'],
+        skills: [
+          {
+            id: '00001',
+            name: 'Web Applications',
+            level: 7,
+            icon: 'IoCodeSlash',
+          },
+          {
+            id: '00003',
+            name: 'UI/UX',
+            level: 3,
+            icon: 'IoPencil',
+          },
+          {
+            id: '00002',
+            name: 'Figma',
+            level: 4,
+            icon: 'PiFigmaLogoBold',
+          },
+          {
+            id: '00005',
+            name: 'Mobile First Design',
+            level: 9,
+            icon: 'IoPhonePortraitOutline',
+          },
+          {
+            id: '00020',
+            name: 'Content Design',
+            level: 3,
+            icon: 'IoPhonePortraitOutline',
+          },
+          {
+            id: '00008',
+            name: 'Logos',
+            level: 5,
+            icon: 'IoPencil',
+          },
         ],
-        meta: {
-          headline: true,
-          date: '3/1/2026',
-          tags: ['Design', 'Website'],
-          skills: [
-            {
-              id: '00001',
-              name: 'Web Applications',
-              level: 7,
-              icon: 'IoCodeSlash',
-            },
-            {
-              id: '00003',
-              name: 'UI/UX',
-              level: 3,
-              icon: 'IoPencil',
-            },
-            {
-              id: '00002',
-              name: 'Figma',
-              level: 4,
-              icon: 'PiFigmaLogoBold',
-            },
-            {
-              id: '00005',
-              name: 'Mobile First Design',
-              level: 9,
-              icon: 'IoPhonePortraitOutline',
-            },
-            {
-              id: '00020',
-              name: 'Content Design',
-              level: 3,
-              icon: 'IoPhonePortraitOutline',
-            },
-            {
-              id: '00008',
-              name: 'Logos',
-              level: 5,
-              icon: 'IoPencil',
-            },
-          ],
-        },
       },
-    ];
+    },
+  ];
 
-    setPortfolioItem(portfolioData);
-  }, []);
+  const navigate = useNavigate();
+  const [portfolioItem] = useState(portfolioData);
 
   const handleClick = () => {
     navigate('/portfolio');

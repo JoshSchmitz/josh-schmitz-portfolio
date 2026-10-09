@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/Footer';
 import Button from '../button/Button';
@@ -6,49 +6,53 @@ import Chip from '../chip/Chip';
 import SkillsList from '../skills/SkillsList';
 import Gallery from '../gallery/Gallery';
 
+// import slider images
+import LogoOptionOne from '../../assets/images/portfolio-vpwildrice/logo-option-1.png';
+import LogoOptionTwo from '../../assets/images/portfolio-vpwildrice/logo-option-2.png';
+import LogoOptionThree from '../../assets/images/portfolio-vpwildrice/logo-option-3.png';
+import LogoOptionFour from '../../assets/images/portfolio-vpwildrice/logo-option-4.png';
+import LogoOptionFive from '../../assets/images/portfolio-vpwildrice/logo-option-5.png';
+import LogoOptionSix from '../../assets/images/portfolio-vpwildrice/logo-option-6.png';
+
 const PortfolioItemVPWildRice = () => {
-  const navigate = useNavigate();
-  const [portfolioItem, setPortfolioItem] = useState([]);
-
-  useEffect(() => {
-    const portfolioData = [
-      {
-        id: '00002',
-        title: 'VP Wild Rice Logo',
-        description:
-          '<p>VP Wild Rice, a small family-owned and run company, commissioned a new logo design. They asked for a logo that was minimal yet clear, felt natural yet modern, and stylized the name of the company.</p><p>I used Adobe Photoshop and Microsoft Word to design and present logo designs and options that met the design brief. </p>',
-        images: [
-          '/src/assets/images/portfolio-vpwildrice/logo-option-1.png',
-          '/src/assets/images/portfolio-vpwildrice/logo-option-2.png',
-          '/src/assets/images/portfolio-vpwildrice/logo-option-3.png',
-          '/src/assets/images/portfolio-vpwildrice/logo-option-4.png',
-          '/src/assets/images/portfolio-vpwildrice/logo-option-5.png',
-          '/src/assets/images/portfolio-vpwildrice/logo-option-6.png',
+  const portfolioData = [
+    {
+      id: '00002',
+      title: 'VP Wild Rice Logo',
+      description:
+        '<p>VP Wild Rice, a small family-owned and run company, commissioned a new logo design. They asked for a logo that was minimal yet clear, felt natural yet modern, and stylized the name of the company.</p><p>I used Adobe Photoshop and Microsoft Word to design and present logo designs and options that met the design brief. </p>',
+      images: [
+        LogoOptionOne,
+        LogoOptionTwo,
+        LogoOptionThree,
+        LogoOptionFour,
+        LogoOptionFive,
+        LogoOptionSix,
+      ],
+      meta: {
+        headline: false,
+        date: '2/1/2007',
+        tags: ['Design', 'Logo'],
+        skills: [
+          {
+            id: '00021',
+            name: 'Graphic Design',
+            level: 4,
+            icon: 'IoPencil',
+          },
+          {
+            id: '00008',
+            name: 'Logos',
+            level: 5,
+            icon: 'IoPencil',
+          },
         ],
-        meta: {
-          headline: false,
-          date: '2/1/2007',
-          tags: ['Design', 'Logo'],
-          skills: [
-            {
-              id: '00021',
-              name: 'Graphic Design',
-              level: 4,
-              icon: 'IoPencil',
-            },
-            {
-              id: '00008',
-              name: 'Logos',
-              level: 5,
-              icon: 'IoPencil',
-            },
-          ],
-        },
       },
-    ];
+    },
+  ];
 
-    setPortfolioItem(portfolioData);
-  }, []);
+  const navigate = useNavigate();
+  const [portfolioItem] = useState(portfolioData);
 
   const handleClick = () => {
     navigate('/portfolio');
